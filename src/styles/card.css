@@ -1,0 +1,287 @@
+.card-container {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.card-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-container.selected {
+  transform: translateY(-20px);
+  box-shadow: 0 8px 16px rgba(26, 115, 232, 0.4);
+}
+
+/* 卡牌正面 */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* 卡牌背面 */
+.card-back {
+  width: 100%;
+  height: 100%;
+  background-color: #2c3e50;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-back-pattern {
+  width: 90%;
+  height: 90%;
+  background: repeating-linear-gradient(
+    45deg,
+    #3498db,
+    #3498db 10px,
+    #2980b9 10px,
+    #2980b9 20px
+  );
+  border-radius: 5px;
+}
+
+/* 卡牌叠放样式 */
+.card-stack {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+}
+
+.card-stack .card-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 手牌容器 */
+.hand-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  margin: 0 auto;
+  min-height: calc(var(--card-height) + 20px);
+}
+
+.hand-container .card-container {
+  margin: 0 -15px;
+  transition: transform 0.2s ease, margin 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hand-container .card-container:hover,
+.hand-container .card-container.selected {
+  z-index: 10;
+  margin: 0 -5px;
+}
+
+.hand-container.active .card-container:hover {
+  transform: translateY(-10px);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  :root {
+    --card-width: 80px;
+    --card-height: 112px;
+  }
+  
+  .hand-container .card-container {
+    margin: 0 -25px;
+  }
+  
+  .hand-container .card-container:hover,
+  .hand-container .card-container.selected {
+    margin: 0 -20px;
+  }
+}
+
+/* 卡牌背面样式 */
+.card-container.face-down {
+  background-color: #1e88e5;
+}
+
+.card-back::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+/* 卡牌内部样式 */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-corner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-corner.top-left {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.card-corner.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  transform: rotate(180deg);
+}
+
+.card-rank {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.card-suit {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.card-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+}
+
+/* 花色颜色 */
+.card.red .card-rank,
+.card.red .card-suit,
+.card.red .card-center {
+  color: #e53935;
+}
+
+.card.black .card-rank,
+.card.black .card-suit,
+.card.black .card-center {
+  color: #212121;
+}
+
+.card.multicolor .card-rank,
+.card.multicolor .card-suit,
+.card.multicolor .card-center {
+  background: linear-gradient(to right, #e53935, #1e88e5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+/* 小王大王卡牌样式 */
+.card.joker {
+  background-color: #f5f5f5;
+}
+
+.card.joker .card-inner {
+  justify-content: center;
+  align-items: center;
+}
+
+.card.joker .card-center {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* 百变卡牌样式 */
+.card.variable {
+  background: linear-gradient(135deg, #9c27b0, #673ab7, #3f51b5, #2196f3, #03a9f4, #00bcd4, #009688, #4caf50, #8bc34a, #cddc39, #ffeb3b, #ffc107, #ff9800, #ff5722);
+  color: white;
+}
+
+.card.variable .card-inner {
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 6px;
+  margin: 4px;
+}
+
+.card.variable .card-center {
+  font-size: 36px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* 牌组样式 */
+.card-stack {
+  position: relative;
+  display: inline-flex;
+}
+
+.card-stack .card-container {
+  margin-right: -50px;
+  transition: margin 0.2s ease, transform 0.2s ease;
+}
+
+.card-stack:hover .card-container {
+  margin-right: -30px;
+}
+
+.card-stack .card-container:last-child {
+  margin-right: 0;
+}
+
+/* 手牌样式 */
+.hand-view {
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: calc(var(--card-height) + 40px);
+}
+
+.hand-view.active {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.3);
+}
+
+.hand-view .cards-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  position: relative;
+}
+
+.empty-hand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--card-height);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-size: 18px;
+  color: #757575;
+} 

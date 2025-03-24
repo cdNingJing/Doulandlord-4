@@ -1,0 +1,87 @@
+/* 出牌区域样式 */
+.play-area-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 16px;
+  position: relative;
+}
+
+.play-area-header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  z-index: 100;
+}
+
+.play-area-header .player-name {
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+.play-area-header .card-type {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.play-area-cards {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  min-height: 168px;
+  min-width: 120px;
+}
+
+.play-area-placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 18px;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+/* 出牌动画 */
+@keyframes cardPlayed {
+  0% {
+    transform: translateY(-50px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.card-played {
+  animation: cardPlayed 0.3s ease forwards;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .play-area-container {
+    min-height: 160px;
+    padding: 12px;
+  }
+  
+  .play-area-header {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+  
+  .play-area-cards {
+    min-height: 140px;
+  }
+} 

@@ -2,7 +2,7 @@
 
 ## 1️⃣ 项目概述
 - **目标**：开发一个 4 人斗地主游戏（1 个真人玩家 + 3 个 AI 玩家）。
-- **技术栈**：React + JavaScript + Tailwind CSS + Framer Motion。
+- **技术栈**：React + TypeScript + CSS + Framer Motion。
 - **AI 难度**：简单 / 中等 / 困难。
 - **平台**：Web 端（适配 PC 和移动端），部署到 Netlify。
 - **特色**：
@@ -19,10 +19,10 @@
   │   ├── components/     # 组件（牌桌、玩家手牌、操作按钮等）
   │   ├── hooks/          # 自定义 Hooks（状态管理、AI 逻辑等）
   │   ├── utils/          # 工具函数（洗牌、判定牌型等）
-  │   ├── App.js          # 入口组件
-  │   ├── index.js        # 渲染入口
+  │   ├── styles/         # CSS 样式文件
+  │   ├── App.tsx         # 入口组件
+  │   ├── index.tsx       # 渲染入口
   ├── package.json        # 依赖管理
-  ├── tailwind.config.js  # Tailwind 配置
   ├── netlify.toml        # Netlify 配置
   └── README.md           # 项目文档
 ```
@@ -31,9 +31,9 @@
 ## 3️⃣ 开发步骤
 
 ### 🟢 1. 初始化项目
-- [ ] 创建 React 项目 (`npx create-react-app four-player-ddz`)
-- [ ] 安装依赖 (`npm install tailwindcss framer-motion`)
-- [ ] 配置 Tailwind CSS
+- [ ] 创建 React 项目 (`npx create-react-app four-player-ddz --template typescript`)
+- [ ] 安装依赖 (`npm install framer-motion`)
+- [ ] 配置基础 CSS 样式
 - [ ] 在 Netlify 上创建部署环境
 
 ### 🟡 2. 实现基本游戏逻辑

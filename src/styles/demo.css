@@ -1,0 +1,90 @@
+/* 演示页面样式 */
+.demo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.demo-header h1 {
+  color: var(--primary-color);
+  font-size: 32px;
+  margin: 0;
+}
+
+.demo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.demo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.demo-section h2 {
+  font-size: 24px;
+  color: var(--secondary-color);
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.play-area-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  background-color: #e9f5ff;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.hand-demo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 16px;
+}
+
+.controls-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .demo-container {
+    padding: 10px;
+  }
+  
+  .demo-content {
+    gap: 20px;
+  }
+  
+  .play-area-demo {
+    min-height: 200px;
+    padding: 10px;
+  }
+  
+  .hand-demo {
+    padding: 10px;
+  }
+  
+  .controls-demo {
+    padding: 10px;
+  }
+} 
