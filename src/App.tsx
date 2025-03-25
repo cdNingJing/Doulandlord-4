@@ -1,8 +1,11 @@
 import React from 'react';
-import DemoPage from './pages/DemoPage';
+import './index.css';
+import GamePage from './pages/GamePage';
 
 function App() {
-  return <DemoPage />;
+  return (
+    <GamePage />
+  );
 }
 
 export default App; 

@@ -1,7 +1,7 @@
 import { Card, CardRank, CardSuit, CARD_RANK_VALUE, CARD_SUIT_COLOR } from './cardTypes';
 import { v4 as uuidv4 } from 'uuid';
 
-// 创建一副完整的牌（54张，含大小王）
+// 创建一副完整的牌（55张，含大小王和百变牌）
 export function createDeck(): Card[] {
   const deck: Card[] = [];
   
@@ -47,6 +47,16 @@ export function createDeck(): Card[] {
     isSelected: false
   });
   
+  // 添加百变牌
+  deck.push({
+    id: uuidv4(),
+    suit: CardSuit.JOKER,
+    rank: CardRank.VARIABLE,
+    value: CARD_RANK_VALUE[CardRank.VARIABLE],
+    isFaceUp: true,
+    isSelected: false
+  });
+  
   return deck;
 }
 
@@ -87,7 +97,7 @@ export function dealCards(deck: Card[]): Card[][] {
   }
   
   // 剩余的牌作为底牌
-  for (let i = 52; i < 54; i++) {
+  for (let i = 52; i < shuffledDeck.length; i++) {
     remainingCards.push({ ...shuffledDeck[i] });
   }
   
@@ -110,9 +120,13 @@ export function sortCards(cards: Card[]): Card[] {
 export function getCardImagePath(card: Card): string {
   // 处理特殊牌
   if (card.suit === CardSuit.JOKER) {
-    return card.rank === CardRank.BIG_JOKER 
-      ? '/PNG-cards/red_joker.png' 
-      : '/PNG-cards/black_joker.png';
+    if (card.rank === CardRank.BIG_JOKER) {
+      return '/PNG-cards/red_joker.png';
+    } else if (card.rank === CardRank.SMALL_JOKER) {
+      return '/PNG-cards/black_joker.png';
+    } else if (card.rank === CardRank.VARIABLE) {
+      return '/PNG-cards/wild_joker.png';
+    }
   }
   
   // 处理普通牌
@@ -140,7 +154,7 @@ export function getCardImagePath(card: Card): string {
     [CardRank.KING]: 'king',
     [CardRank.SMALL_JOKER]: 'small_joker', // 添加以满足Record类型
     [CardRank.BIG_JOKER]: 'big_joker', // 添加以满足Record类型
-    [CardRank.VARIABLE]: 'variable' // 添加以满足Record类型
+    [CardRank.VARIABLE]: 'wild_joker' // 添加以满足Record类型
   };
   
   const suit = suitMap[card.suit];

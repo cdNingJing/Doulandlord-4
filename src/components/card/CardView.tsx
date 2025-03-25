@@ -8,9 +8,16 @@ interface CardViewProps {
   onClick?: (card: Card) => void;
   style?: React.CSSProperties;
   className?: string;
+  size?: 'small' | 'medium' | 'large';
 }
 
-const CardView: React.FC<CardViewProps> = ({ card, onClick, style, className = '' }) => {
+const CardView: React.FC<CardViewProps> = ({ 
+  card, 
+  onClick, 
+  style, 
+  className = '',
+  size = 'medium'
+}) => {
   const imagePath = getCardImagePath(card);
   
   const handleClick = () => {
@@ -21,15 +28,18 @@ const CardView: React.FC<CardViewProps> = ({ card, onClick, style, className = '
   
   return (
     <div 
-      className={`card-container ${card.isSelected ? 'selected' : ''} ${!card.isFaceUp ? 'face-down' : ''} ${className}`} 
+      className={`card-container ${card.isSelected ? 'selected' : ''} ${!card.isFaceUp ? 'face-down' : ''} ${className} size-${size}`} 
       onClick={handleClick} 
       style={style}
+      data-suit={card.suit}
+      data-rank={card.rank}
     >
       {card.isFaceUp ? (
         <img 
           src={imagePath} 
           alt={`${card.suit} ${card.rank}`}
           className="card-image"
+          loading="lazy"
         />
       ) : (
         <div className="card-back">
